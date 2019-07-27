@@ -136,13 +136,30 @@ public class Ch3Ex2Activity extends AppCompatActivity {
         animator1.setRepeatCount(ObjectAnimator.INFINITE);
         animator1.setRepeatMode(ObjectAnimator.REVERSE);
 
-        // TODO ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
+        // ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
 
-        // TODO ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(target,"scaleX",1f,2f);
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(target,"scaleY",1f,2f);
+        setOtherArg(animator2);
+        setOtherArg(animator3);
 
-        // TODO ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
+        // ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
+
+        ObjectAnimator animator4 = ObjectAnimator.ofFloat(target,"alpha",1f,0.5f);
+        setOtherArg(animator4);
+
+        // ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
         animatorSet = new AnimatorSet();
         animatorSet.playTogether(animator1);
+        animatorSet.playTogether(animator2);
+        animatorSet.playTogether(animator3);
+        animatorSet.playTogether(animator4);
         animatorSet.start();
+    }
+
+    private void setOtherArg(ObjectAnimator animator){
+        animator.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+        animator.setRepeatCount(ObjectAnimator.INFINITE);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
     }
 }
